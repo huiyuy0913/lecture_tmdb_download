@@ -1,4 +1,4 @@
-import urllib.request
+import urllib.request  # you can also use requests to do it
 import json
 import os
 import time
@@ -30,7 +30,7 @@ for movie_id in range(movie_min, movie_max):
     json_response = json.load(response)
 
     f = open("json_files/tmdb_" + str(movie_id) + ".json", "w")
-    f.write(json.dumps(json_response)) #remenber there is s after dump!
+    f.write(json.dumps(json_response)) #remember there is s after dump!
     time.sleep(30)
 
 # watch the recording again! and what is the homework??? write some programs before the lecture, write tmdb_parse!
