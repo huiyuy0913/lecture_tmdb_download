@@ -20,17 +20,24 @@ response = urllib.request.urlopen("https://api.themoviedb.org/3/movie/latest?api
 json_response = json.load(response)
 
 movie_max = int(json_response['id'])
-movie_min = movie_max - 10
+movie_min = movie_max - 20
 
 # print(movie_max)
 
 for movie_id in range(movie_min, movie_max):
-    print(movie_id)
-    response = urllib.request.urlopen("https://api.themoviedb.org/3/movie/" + str(movie_id) + "?api_key="+api_key)
-    json_response = json.load(response)
+    file_name = "json_files/tmdb_" + str(movie_id)
 
-    f = open("json_files/tmdb_" + str(movie_id) + ".json", "w")
-    f.write(json.dumps(json_response)) #remember there is s after dump!
-    time.sleep(30)
+    if os.path.exists(file_name + ".json"):
+        print("file exists", movie_id)
+    else:
+        print("downloading:",movie_id)
+        response = urllib.request.urlopen("https://api.themoviedb.org/3/movie/" + str(movie_id) + "?api_key="+api_key)
+        json_response = json.load(response)
+
+        f = open("json_files/tmdb_" + str(movie_id) + ".json", "w")
+        f.write(json.dumps(json_response)) #remember there is s after dump!
+        f.close()
+        print("waiting 15 seconds")
+        time.sleep(15)
 
 # watch the recording again! and what is the homework??? write some programs before the lecture, write tmdb_parse!
