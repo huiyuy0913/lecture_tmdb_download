@@ -91,13 +91,3 @@ print("done")
 
 # what if we want adult to be 0 and non adult to be 1? think about it
 # try to download other information in the csv file!
-
-# # method1
-# import pandas
-# tmdb_dataset = pandas.read_csv('tmdb_dataset.csv',encoding = 'gbk')
-# tmdb_dataset['adult'][tmdb_dataset['adult'] == '0'] = 1
-# tmdb_dataset['adult'][tmdb_dataset['adult'] == '1'] = 0
-
-# # method2
-# size_mapping = {'0': 1, '1': 0}
-# tmdb_dataset['adult'] = tmdb_dataset['adult'].map(size_mapping)
