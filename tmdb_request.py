@@ -19,8 +19,11 @@ response = urllib.request.urlopen("https://api.themoviedb.org/3/movie/latest?api
 
 json_response = json.load(response)
 
-movie_max = int(json_response['id'])
-movie_min = movie_max - 20
+# movie_max = int(json_response['id'])
+# movie_min = movie_max - 200
+
+movie_max = 1022400
+movie_min = 1022300
 
 # print(movie_max)
 
@@ -30,13 +33,22 @@ for movie_id in range(movie_min, movie_max):
     if os.path.exists(file_name + ".json"):
         print("file exists", movie_id)
     else:
-        print("downloading:",movie_id)
-        response = urllib.request.urlopen("https://api.themoviedb.org/3/movie/" + str(movie_id) + "?api_key="+api_key)
-        json_response = json.load(response)
+        try:
+            print("downloading:",movie_id)
+            response = urllib.request.urlopen("https://api.themoviedb.org/3/movie/" + str(movie_id) + "?api_key="+api_key)
+            json_response = json.load(response)
 
-        f = open("json_files/tmdb_" + str(movie_id) + ".json", "w")
-        f.write(json.dumps(json_response)) #remember there is s after dump!
-        f.close()
+            f = open(file_name + ".tmp", "w")
+            f.write(json.dumps(json_response)) #remember there is s after dump!
+            f.close()
+
+
+            time.sleep(1)
+            os.rename(file_name + ".tmp", file_name + ".json")
+        except Exception as e:
+            print(e)
+
+
         print("waiting 15 seconds")
         time.sleep(15)
 
