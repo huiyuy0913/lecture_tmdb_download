@@ -82,7 +82,7 @@ for json_file_name in glob.glob("json_files/*.json"):
 
 		}])
 	  ])
-
+ 
 # print(df)
 
 df.to_csv("parsed_files/tmdb_dataset.csv",index=False)
