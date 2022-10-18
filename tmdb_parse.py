@@ -44,6 +44,9 @@ for json_file_name in glob.glob("json_files/*.json"):
 	video = json_data['video']
 
 
+	overview = overview.replace("\n", "").replace("\r", "") #replace the new line in genres
+
+
 	# backdrop_path
 	# poster_path
 

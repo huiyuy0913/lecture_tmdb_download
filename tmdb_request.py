@@ -22,8 +22,8 @@ json_response = json.load(response)
 # movie_max = int(json_response['id'])
 # movie_min = movie_max - 200
 
-movie_max = 1022400
-movie_min = 1022300
+movie_max = 700
+movie_min = 500
 
 # print(movie_max)
 
